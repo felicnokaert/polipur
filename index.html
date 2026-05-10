@@ -6,8 +6,8 @@
   <meta name="description" content="POLIPUR SP — Aplicadores de poliuretano expandido y poliurea en San Pedro, Buenos Aires. Aislación térmica, impermeabilización y recubrimientos industriales." />
   <title>POLIPUR SP — Aislación y Recubrimientos en San Pedro</title>
 
-  <!-- Favicon: isologo -->
-  <link rel="icon" type="image/png" href="logos/Isologo.png" />
+  <!-- Favicon SVG inline con colores de marca (funciona en todos los browsers modernos) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231A6FA8'/%3E%3Cstop offset='50%25' stop-color='%231A6FA8'/%3E%3Cstop offset='50%25' stop-color='%23E8500A'/%3E%3Cstop offset='100%25' stop-color='%23E8500A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 5 L90 20 L90 55 Q90 80 50 95 Q10 80 10 55 L10 20 Z' fill='url(%23g)'/%3E%3Ctext x='50' y='62' font-family='Arial Black,sans-serif' font-size='36' font-weight='900' text-anchor='middle' fill='white' letter-spacing='-2'%3ESP%3C/text%3E%3C/svg%3E" />
   <link rel="apple-touch-icon" href="logos/Isologo.png" />
 
   <!-- Google Fonts -->
@@ -744,7 +744,7 @@
     /* mix-blend-mode: screen → el fondo blanco del PNG desaparece
        en fondos oscuros, los colores azul/naranja del logo quedan visibles */
     .logo-img {
-      height: 72px;
+      height: 96px;
       width: auto;
       display: block;
       mix-blend-mode: screen;
@@ -754,7 +754,7 @@
 
     /* Versión blanca para footer oscuro */
     .logo-img-white {
-      height: 68px;
+      height: 90px;
       width: auto;
       display: block;
       filter: brightness(0) invert(1);
@@ -852,92 +852,228 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.75rem;
       position: relative;
     }
 
-    /* El teléfono */
+    /* ---- Marco del teléfono ---- */
     .phone-frame {
       position: relative;
-      width: 320px;
-      height: 640px;
-      background: #0a0a0a;
-      border-radius: 48px;
-      border: 2px solid #333;
+      width: 300px;
+      height: 620px;
+      background: #080808;
+      border-radius: 50px;
+      /* borde exterior plateado */
+      border: 2px solid #3a3a3a;
       box-shadow:
-        0 0 0 1px #1a1a1a,
-        0 30px 80px rgba(0,0,0,0.7),
-        inset 0 0 0 1px #222;
+        /* borde interior oscuro */
+        inset 0 0 0 2px #111,
+        /* sombra exterior profunda */
+        0 40px 100px rgba(0,0,0,0.8),
+        0 8px 32px rgba(0,0,0,0.6);
       overflow: hidden;
       flex-shrink: 0;
     }
 
-    /* Botones laterales del teléfono */
-    .phone-frame::before {
-      content: '';
-      position: absolute;
-      left: -4px;
-      top: 90px;
-      width: 3px;
-      height: 32px;
-      background: #2a2a2a;
-      border-radius: 2px 0 0 2px;
-      box-shadow: 0 44px 0 #2a2a2a, 0 80px 0 #2a2a2a;
-    }
+    /* Botón power (derecha) */
     .phone-frame::after {
       content: '';
       position: absolute;
-      right: -4px;
-      top: 110px;
-      width: 3px;
-      height: 60px;
-      background: #2a2a2a;
-      border-radius: 0 2px 2px 0;
+      right: -5px;
+      top: 130px;
+      width: 4px;
+      height: 70px;
+      background: #2d2d2d;
+      border-radius: 0 3px 3px 0;
+      box-shadow: inset -1px 0 0 #1a1a1a;
+    }
+
+    /* Botones volumen (izquierda) */
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 100px;
+      width: 4px;
+      height: 36px;
+      background: #2d2d2d;
+      border-radius: 3px 0 0 3px;
+      box-shadow:
+        inset 1px 0 0 #1a1a1a,
+        0 54px 0 #2d2d2d,
+        0 54px 0 inset 1px 0 0 #1a1a1a;
     }
 
     /* Dynamic island */
     .phone-island {
       position: absolute;
-      top: 14px;
+      top: 16px;
       left: 50%;
       transform: translateX(-50%);
-      width: 100px;
-      height: 28px;
+      width: 110px;
+      height: 30px;
       background: #000;
       border-radius: 20px;
-      z-index: 20;
-      box-shadow: 0 0 0 1px #1a1a1a;
+      z-index: 30;
+      box-shadow: 0 0 0 1px #222;
     }
 
-    /* Pantalla — área del iframe */
+    /* Pantalla */
     .phone-screen {
       position: absolute;
       inset: 0;
-      border-radius: 48px;
+      border-radius: 50px;
       overflow: hidden;
       background: #000;
     }
 
+    /* El iframe de TikTok ocupa toda la pantalla */
     .phone-video {
       position: absolute;
-      /* empezar desde abajo del dynamic island */
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       border: none;
       opacity: 0;
       transition: opacity 0.5s ease;
       pointer-events: none;
-      /* el embed de TikTok tiene su propio scroll — lo dejamos expandir */
-      overflow: hidden;
     }
     .phone-video.active {
       opacity: 1;
       pointer-events: auto;
     }
+
+    /* ---- Overlay TikTok UI (decorativo encima del iframe) ---- */
+    .tiktok-ui {
+      position: absolute;
+      inset: 0;
+      border-radius: 50px;
+      pointer-events: none;
+      z-index: 20;
+      display: flex;
+    }
+
+    /* Franja izquierda invisible — solo para estructura */
+    .tiktok-left { flex: 1; }
+
+    /* Columna derecha — botones de acción */
+    .tiktok-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 0 10px 80px 0;
+    }
+
+    .tt-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .tt-btn-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tt-btn-icon svg { width: 22px; height: 22px; fill: white; }
+    .tt-btn-count {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    }
+
+    /* Disco de música girando */
+    .tt-disc {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: spin-disc 4s linear infinite;
+    }
+    .tt-disc::after {
+      content: '';
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border-radius: 50%;
+      border: 2px solid #111;
+    }
+    @keyframes spin-disc { to { transform: rotate(360deg); } }
+
+    /* Info bottom-left */
+    .tiktok-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 52px;
+      padding: 0 14px 18px;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+      border-radius: 0 0 0 50px;
+    }
+    .tt-username {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+      margin-bottom: 4px;
+    }
+    .tt-caption {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(255,255,255,0.85);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .tt-music {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 6px;
+    }
+    .tt-music svg { width: 11px; height: 11px; fill: rgba(255,255,255,0.8); }
+    .tt-music span {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      color: rgba(255,255,255,0.8);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+
+    /* Barra de progreso bottom */
+    .tt-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 0 0 50px 50px;
+    }
+    .tt-progress-fill {
+      height: 100%;
+      width: 35%;
+      background: #fff;
+      border-radius: 2px;
+      animation: tt-progress 18s linear infinite;
+    }
+    @keyframes tt-progress { from { width: 0%; } to { width: 100%; } }
 
     /* reflejo sutil en el frame */
     .phone-glare {
@@ -945,11 +1081,11 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 55%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, transparent 100%);
-      border-radius: 44px 44px 0 0;
+      height: 45%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%);
+      border-radius: 50px 50px 0 0;
       pointer-events: none;
-      z-index: 10;
+      z-index: 25;
     }
 
     /* ---- Navegación de videos ---- */
@@ -1414,54 +1550,104 @@
 
         <!-- Marco del teléfono -->
         <div class="phone-frame">
+
           <!-- Dynamic Island -->
           <div class="phone-island"></div>
-          <!-- Reflejo / glare -->
-          <div class="phone-glare"></div>
 
-          <!-- Pantalla: contiene todos los iframes apilados -->
+          <!-- Pantalla: iframes de TikTok -->
           <div class="phone-screen">
 
-            <!-- Loading spinner (se oculta al cargar) -->
+            <!-- Spinner mientras carga -->
             <div class="phone-loader" id="phone-loader">
               <div class="spinner"></div>
             </div>
 
             <!--
-              VIDEOS TIKTOK
-              Para agregar más: copiá un elemento <iframe> y cambiá el ID numérico
-              en la URL: https://www.tiktok.com/embed/v2/ID_DEL_VIDEO
+              VIDEOS TIKTOK — para agregar más copiá un <iframe> y cambiá el ID
+              en: https://www.tiktok.com/embed/v2/TU_ID_AQUI
             -->
             <iframe
               class="phone-video active"
               id="vid-0"
               src="https://www.tiktok.com/embed/v2/7527411236439477510"
-              allow="autoplay; encrypted-media"
+              allow="autoplay; encrypted-media; fullscreen"
               allowfullscreen
+              scrolling="no"
               title="POLIPUR SP en TikTok — video 1"
             ></iframe>
 
-            <!-- Slot 2: reemplazá el ID con el próximo video de @polipursp -->
             <iframe
               class="phone-video"
               id="vid-1"
               data-src="https://www.tiktok.com/embed/v2/REEMPLAZA_CON_ID_2"
-              allow="autoplay; encrypted-media"
+              allow="autoplay; encrypted-media; fullscreen"
               allowfullscreen
+              scrolling="no"
               title="POLIPUR SP en TikTok — video 2"
             ></iframe>
 
-            <!-- Slot 3: reemplazá el ID con otro video -->
             <iframe
               class="phone-video"
               id="vid-2"
               data-src="https://www.tiktok.com/embed/v2/REEMPLAZA_CON_ID_3"
-              allow="autoplay; encrypted-media"
+              allow="autoplay; encrypted-media; fullscreen"
               allowfullscreen
+              scrolling="no"
               title="POLIPUR SP en TikTok — video 3"
             ></iframe>
 
           </div><!-- /phone-screen -->
+
+          <!-- Overlay TikTok UI (decorativo, pointer-events:none) -->
+          <div class="tiktok-ui">
+            <div class="tiktok-left"></div>
+
+            <!-- Botones de acción derecha -->
+            <div class="tiktok-right">
+              <!-- Corazón -->
+              <div class="tt-btn">
+                <div class="tt-btn-icon">
+                  <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                </div>
+                <span class="tt-btn-count">1.2K</span>
+              </div>
+              <!-- Comentario -->
+              <div class="tt-btn">
+                <div class="tt-btn-icon">
+                  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+                </div>
+                <span class="tt-btn-count">48</span>
+              </div>
+              <!-- Share -->
+              <div class="tt-btn">
+                <div class="tt-btn-icon">
+                  <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                </div>
+                <span class="tt-btn-count">89</span>
+              </div>
+              <!-- Disco girando -->
+              <div class="tt-disc"></div>
+            </div>
+          </div>
+
+          <!-- Info bottom-left -->
+          <div class="tiktok-bottom">
+            <div class="tt-username">@polipursp</div>
+            <div class="tt-caption">Aplicación de poliuretano expandido 🔥 Galpón industrial San Pedro</div>
+            <div class="tt-music">
+              <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+              <span>Sonido original · polipursp</span>
+            </div>
+          </div>
+
+          <!-- Barra de progreso -->
+          <div class="tt-progress">
+            <div class="tt-progress-fill"></div>
+          </div>
+
+          <!-- Reflejo sobre todo -->
+          <div class="phone-glare"></div>
+
         </div><!-- /phone-frame -->
 
         <!-- Navegación: prev · dots · next -->
