@@ -1630,7 +1630,7 @@
 
         <!-- Navegación: prev · dots · next -->
         <div class="phone-nav">
-          <button class="phone-nav-btn" id="vid-prev" aria-label="Video anterior" disabled>
+          <button class="phone-nav-btn" id="vid-prev" aria-label="Video anterior">
             &#8592;
           </button>
           <div class="phone-nav-dots" id="vid-dots"></div>
@@ -1837,7 +1837,9 @@
 
     if (!videos.length) return;
 
-    let current = 0;
+    let current  = 0;
+    let autoTimer = null;
+    const AUTO_DELAY = 18000; // 18s por video, tiempo suficiente para verlo
 
     // Ocultar loader cuando el primer iframe cargue
     videos[0].addEventListener('load', () => {
@@ -1849,16 +1851,16 @@
       const dot = document.createElement('button');
       dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
       dot.setAttribute('aria-label', 'Video ' + (i + 1));
-      dot.addEventListener('click', () => goTo(i));
+      dot.addEventListener('click', () => { goTo(i); resetAuto(); });
       dotsWrap.appendChild(dot);
     });
 
     function goTo(idx) {
-      // Ocultar actual
       videos[current].classList.remove('active');
       dotsWrap.children[current].classList.remove('active');
 
-      current = idx;
+      // Loop circular
+      current = (idx + videos.length) % videos.length;
 
       // Lazy-load: mover data-src → src si aún no cargó
       const target = videos[current];
@@ -1872,16 +1874,37 @@
       target.classList.add('active');
       dotsWrap.children[current].classList.add('active');
 
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === videos.length - 1;
+      // Con loop circular los botones siempre están activos
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
     }
 
-    prevBtn.addEventListener('click', () => { if (current > 0) goTo(current - 1); });
-    nextBtn.addEventListener('click', () => { if (current < videos.length - 1) goTo(current + 1); });
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
 
-    // Inicializar estado de botones
-    prevBtn.disabled = true;
-    nextBtn.disabled = videos.length <= 1;
+    // Auto-loop: avanza solo cada AUTO_DELAY ms
+    function startAuto() {
+      autoTimer = setInterval(next, AUTO_DELAY);
+    }
+    function resetAuto() {
+      clearInterval(autoTimer);
+      startAuto();
+    }
+
+    prevBtn.addEventListener('click', () => { prev(); resetAuto(); });
+    nextBtn.addEventListener('click', () => { next(); resetAuto(); });
+
+    // Pausa el auto si el usuario está interactuando con el phone
+    document.getElementById('phone-loader')
+      ?.closest('.phone-frame')
+      ?.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    document.getElementById('phone-loader')
+      ?.closest('.phone-frame')
+      ?.addEventListener('mouseleave', startAuto);
+
+    // Arranca el auto-loop solo si hay más de 1 video real (sin placeholder)
+    const realVideos = videos.filter(v => v.src && !v.src.includes('REEMPLAZA'));
+    if (realVideos.length > 1) startAuto();
   })();
 
   /* ---- Smooth scroll for anchor links ---- */
