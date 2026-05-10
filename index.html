@@ -805,6 +805,242 @@
     /* footer social: un poco más grandes */
     .footer-social { margin-top: 1.25rem; }
 
+    /* ============================================================
+       SECCIÓN REDES — PHONE MOCKUP + TIKTOK SLIDER
+    ============================================================ */
+    #redes { background: var(--bg); }
+
+    .redes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    /* ---- texto izquierda ---- */
+    .redes-text {}
+
+    .redes-social-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .redes-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--muted);
+      transition: color var(--transition), border-color var(--transition), background var(--transition), transform var(--transition);
+    }
+    .redes-btn:hover {
+      color: var(--text);
+      border-color: var(--orange);
+      background: rgba(232,80,10,0.07);
+      transform: translateY(-2px);
+    }
+    .redes-btn svg { flex-shrink: 0; }
+
+    /* ---- phone wrapper ---- */
+    .phone-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    /* El teléfono */
+    .phone-frame {
+      position: relative;
+      width: 270px;
+      height: 560px;
+      background: #0a0a0a;
+      border-radius: 44px;
+      border: 2px solid #333;
+      box-shadow:
+        0 0 0 1px #1a1a1a,
+        0 30px 80px rgba(0,0,0,0.7),
+        inset 0 0 0 1px #222;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Botones laterales del teléfono */
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 90px;
+      width: 3px;
+      height: 32px;
+      background: #2a2a2a;
+      border-radius: 2px 0 0 2px;
+      box-shadow: 0 44px 0 #2a2a2a, 0 80px 0 #2a2a2a;
+    }
+    .phone-frame::after {
+      content: '';
+      position: absolute;
+      right: -4px;
+      top: 110px;
+      width: 3px;
+      height: 60px;
+      background: #2a2a2a;
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* Dynamic island */
+    .phone-island {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 28px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 20;
+      box-shadow: 0 0 0 1px #1a1a1a;
+    }
+
+    /* Pantalla — área del iframe */
+    .phone-screen {
+      position: absolute;
+      inset: 0;
+      border-radius: 44px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .phone-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    .phone-video.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* reflejo sutil en el frame */
+    .phone-glare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 55%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, transparent 100%);
+      border-radius: 44px 44px 0 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ---- Navegación de videos ---- */
+    .phone-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .phone-nav-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+    .phone-nav-btn:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      transform: scale(1.08);
+    }
+    .phone-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .phone-nav-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background var(--transition), width var(--transition);
+      cursor: pointer;
+    }
+    .nav-dot.active {
+      background: var(--orange);
+      width: 18px;
+      border-radius: 4px;
+    }
+
+    /* glow detrás del teléfono */
+    .phone-glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,80,10,0.18) 0%, transparent 70%);
+      filter: blur(50px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ---- loading spinner mientras carga el iframe ---- */
+    .phone-loader {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0a;
+      z-index: 5;
+      transition: opacity 0.4s ease;
+    }
+    .phone-loader.hidden { opacity: 0; pointer-events: none; }
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--border);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 900px) {
+      .redes-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .phone-wrapper { order: -1; }
+      .phone-frame { width: 240px; height: 500px; }
+    }
+
   </style>
 </head>
 <body>
@@ -835,6 +1071,7 @@
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#trabajos">Trabajos</a></li>
         <li><a href="#nosotros">Por qué nosotros</a></li>
+        <li><a href="#redes">Redes</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
 
@@ -854,6 +1091,7 @@
       <a href="#servicios">Servicios</a>
       <a href="#trabajos">Trabajos</a>
       <a href="#nosotros">Por qué nosotros</a>
+      <a href="#redes">Redes</a>
       <a href="#contacto">Contacto</a>
       <a href="https://wa.me/5491149745772?text=Hola!%20Quiero%20consultar%20por%20un%20presupuesto." target="_blank" rel="noopener" style="color: var(--orange); border-bottom: none; margin-top: 0.5rem;">Pedir presupuesto →</a>
     </div>
@@ -1118,6 +1356,126 @@
 </section>
 
 <!-- ============================================================
+     REDES SOCIALES — PHONE MOCKUP + TIKTOK SLIDER
+============================================================ -->
+<section id="redes" class="section">
+  <div class="container">
+    <div class="redes-grid">
+
+      <!-- Columna izquierda: texto + links a redes -->
+      <div class="redes-text reveal">
+        <div class="section-label">Seguinos en redes</div>
+        <h2 class="section-title">El trabajo real,<br/>en video.</h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" style="margin-top: 1.5rem;">
+          Mirá cómo trabajamos en cada obra. Videos reales de aplicación de poliuretano y poliurea subidos a nuestro TikTok.
+        </p>
+
+        <div class="redes-social-btns">
+
+          <a class="redes-btn" href="https://www.tiktok.com/@polipursp" target="_blank" rel="noopener">
+            <!-- TikTok icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.28 6.28 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.79a4.85 4.85 0 01-1.02-.1z"/></svg>
+            @polipursp en TikTok
+          </a>
+
+          <a class="redes-btn" href="https://www.instagram.com/polipursp/" target="_blank" rel="noopener">
+            <!-- Instagram icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            @polipursp en Instagram
+          </a>
+
+          <a class="redes-btn" href="https://www.facebook.com/p/Polipur-SP-100086511197446/" target="_blank" rel="noopener">
+            <!-- Facebook icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Polipur SP en Facebook
+          </a>
+
+          <a class="redes-btn" href="https://www.linkedin.com/company/polipur-sp/posts/?feedView=all" target="_blank" rel="noopener">
+            <!-- LinkedIn icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Columna derecha: teléfono con videos TikTok -->
+      <div class="phone-wrapper reveal">
+
+        <!-- glow de fondo -->
+        <div class="phone-glow"></div>
+
+        <!-- Marco del teléfono -->
+        <div class="phone-frame">
+          <!-- Dynamic Island -->
+          <div class="phone-island"></div>
+          <!-- Reflejo / glare -->
+          <div class="phone-glare"></div>
+
+          <!-- Pantalla: contiene todos los iframes apilados -->
+          <div class="phone-screen">
+
+            <!-- Loading spinner (se oculta al cargar) -->
+            <div class="phone-loader" id="phone-loader">
+              <div class="spinner"></div>
+            </div>
+
+            <!--
+              VIDEOS TIKTOK
+              Para agregar más: copiá un elemento <iframe> y cambiá el ID numérico
+              en la URL: https://www.tiktok.com/embed/v2/ID_DEL_VIDEO
+            -->
+            <iframe
+              class="phone-video active"
+              id="vid-0"
+              src="https://www.tiktok.com/embed/v2/7527411236439477510"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+              title="POLIPUR SP en TikTok — video 1"
+            ></iframe>
+
+            <!-- Slot 2: reemplazá el ID con el próximo video de @polipursp -->
+            <iframe
+              class="phone-video"
+              id="vid-1"
+              data-src="https://www.tiktok.com/embed/v2/REEMPLAZA_CON_ID_2"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+              title="POLIPUR SP en TikTok — video 2"
+            ></iframe>
+
+            <!-- Slot 3: reemplazá el ID con otro video -->
+            <iframe
+              class="phone-video"
+              id="vid-2"
+              data-src="https://www.tiktok.com/embed/v2/REEMPLAZA_CON_ID_3"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+              title="POLIPUR SP en TikTok — video 3"
+            ></iframe>
+
+          </div><!-- /phone-screen -->
+        </div><!-- /phone-frame -->
+
+        <!-- Navegación: prev · dots · next -->
+        <div class="phone-nav">
+          <button class="phone-nav-btn" id="vid-prev" aria-label="Video anterior" disabled>
+            &#8592;
+          </button>
+          <div class="phone-nav-dots" id="vid-dots"></div>
+          <button class="phone-nav-btn" id="vid-next" aria-label="Video siguiente">
+            &#8594;
+          </button>
+        </div>
+
+      </div><!-- /phone-wrapper -->
+
+    </div><!-- /redes-grid -->
+  </div>
+</section>
+
+<!-- ============================================================
      CTA FINAL
 ============================================================ -->
 <section id="contacto" class="section">
@@ -1168,6 +1526,11 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a class="social-link" href="https://www.linkedin.com/company/polipur-sp/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn de POLIPUR SP">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
 
           <!-- TikTok -->
@@ -1293,6 +1656,63 @@
     }
   }, { threshold: 0.5 });
   if (statsSection) statsObserver.observe(statsSection);
+
+  /* ---- PHONE / TIKTOK SLIDER ---- */
+  (function () {
+    const videos   = Array.from(document.querySelectorAll('.phone-video'));
+    const prevBtn  = document.getElementById('vid-prev');
+    const nextBtn  = document.getElementById('vid-next');
+    const dotsWrap = document.getElementById('vid-dots');
+    const loader   = document.getElementById('phone-loader');
+
+    if (!videos.length) return;
+
+    let current = 0;
+
+    // Ocultar loader cuando el primer iframe cargue
+    videos[0].addEventListener('load', () => {
+      if (loader) loader.classList.add('hidden');
+    });
+
+    // Crear dots
+    videos.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Video ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function goTo(idx) {
+      // Ocultar actual
+      videos[current].classList.remove('active');
+      dotsWrap.children[current].classList.remove('active');
+
+      current = idx;
+
+      // Lazy-load: mover data-src → src si aún no cargó
+      const target = videos[current];
+      if (target.dataset.src) {
+        loader && loader.classList.remove('hidden');
+        target.src = target.dataset.src;
+        delete target.dataset.src;
+        target.addEventListener('load', () => loader && loader.classList.add('hidden'), { once: true });
+      }
+
+      target.classList.add('active');
+      dotsWrap.children[current].classList.add('active');
+
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === videos.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => { if (current > 0) goTo(current - 1); });
+    nextBtn.addEventListener('click', () => { if (current < videos.length - 1) goTo(current + 1); });
+
+    // Inicializar estado de botones
+    prevBtn.disabled = true;
+    nextBtn.disabled = videos.length <= 1;
+  })();
 
   /* ---- Smooth scroll for anchor links ---- */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
