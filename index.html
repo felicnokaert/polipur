@@ -6,8 +6,8 @@
   <meta name="description" content="POLIPUR SP — Aplicadores de poliuretano expandido y poliurea en San Pedro, Buenos Aires. Aislación térmica, impermeabilización y recubrimientos industriales." />
   <title>POLIPUR SP — Aislación y Recubrimientos en San Pedro</title>
 
-  <!-- Favicon SVG inline con colores de marca (funciona en todos los browsers modernos) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231A6FA8'/%3E%3Cstop offset='50%25' stop-color='%231A6FA8'/%3E%3Cstop offset='50%25' stop-color='%23E8500A'/%3E%3Cstop offset='100%25' stop-color='%23E8500A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M50 5 L90 20 L90 55 Q90 80 50 95 Q10 80 10 55 L10 20 Z' fill='url(%23g)'/%3E%3Ctext x='50' y='62' font-family='Arial Black,sans-serif' font-size='36' font-weight='900' text-anchor='middle' fill='white' letter-spacing='-2'%3ESP%3C/text%3E%3C/svg%3E" />
+  <!-- Favicon: isologo real -->
+  <link rel="icon" type="image/png" href="logos/Isologo.png" />
   <link rel="apple-touch-icon" href="logos/Isologo.png" />
 
   <!-- Google Fonts -->
@@ -151,9 +151,15 @@
       left: 0;
       right: 0;
       z-index: 100;
-      padding: 1rem 0;
+      padding: 0.35rem 0;
       transition: background var(--transition), backdrop-filter var(--transition), border-color var(--transition);
       border-bottom: 1px solid transparent;
+    }
+
+    /* El logo se muestra grande en el resto del sitio,
+       pero dentro del navbar lo contenemos sin achicar el archivo */
+    #navbar .logo-img {
+      height: 54px;
     }
     #navbar.scrolled {
       background: rgba(13, 13, 13, 0.82);
@@ -1404,7 +1410,7 @@
           <div class="why-badge" style="margin-top: 1.5rem;">
             <span class="badge-icon">👷</span>
             <div>
-              <strong>2 aplicadores profesionales</strong>
+              <strong>Aplicadores profesionales</strong>
               <p>equipo dedicado en cada proyecto</p>
             </div>
           </div>
@@ -1598,54 +1604,7 @@
 
           </div><!-- /phone-screen -->
 
-          <!-- Overlay TikTok UI (decorativo, pointer-events:none) -->
-          <div class="tiktok-ui">
-            <div class="tiktok-left"></div>
-
-            <!-- Botones de acción derecha -->
-            <div class="tiktok-right">
-              <!-- Corazón -->
-              <div class="tt-btn">
-                <div class="tt-btn-icon">
-                  <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                </div>
-                <span class="tt-btn-count">1.2K</span>
-              </div>
-              <!-- Comentario -->
-              <div class="tt-btn">
-                <div class="tt-btn-icon">
-                  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-                </div>
-                <span class="tt-btn-count">48</span>
-              </div>
-              <!-- Share -->
-              <div class="tt-btn">
-                <div class="tt-btn-icon">
-                  <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-                </div>
-                <span class="tt-btn-count">89</span>
-              </div>
-              <!-- Disco girando -->
-              <div class="tt-disc"></div>
-            </div>
-          </div>
-
-          <!-- Info bottom-left -->
-          <div class="tiktok-bottom">
-            <div class="tt-username">@polipursp</div>
-            <div class="tt-caption">Aplicación de poliuretano expandido 🔥 Galpón industrial San Pedro</div>
-            <div class="tt-music">
-              <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-              <span>Sonido original · polipursp</span>
-            </div>
-          </div>
-
-          <!-- Barra de progreso -->
-          <div class="tt-progress">
-            <div class="tt-progress-fill"></div>
-          </div>
-
-          <!-- Reflejo sobre todo -->
+          <!-- Reflejo sutil sobre el frame -->
           <div class="phone-glare"></div>
 
         </div><!-- /phone-frame -->
