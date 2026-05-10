@@ -1,0 +1,19 @@
+CÓMO AGREGAR FOTOS A LA GALERÍA
+================================
+
+1. Copiá tus fotos (.jpg, .jpeg, .png, .webp) en esta carpeta.
+
+2. (Opcional) Nombrar el archivo con guiones ayuda a generar la etiqueta automáticamente:
+   Ejemplos:
+     galpon-industrial.jpg      → "Galpón industrial"
+     terraza-residencial.jpg    → "Terraza residencial"
+     camara-frio.jpg            → "Cámara frío"
+     IMG_1234.jpg               → aparece como "Trabajo realizado"
+
+3. Desde la carpeta del proyecto, corré:
+     npm run galeria
+
+4. Luego hacé git push y Vercel lo deploya solo:
+     git add .
+     git commit -m "galeria: nuevas fotos"
+     git push
