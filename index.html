@@ -828,6 +828,93 @@
     .footer-social { margin-top: 1.25rem; }
 
     /* ============================================================
+       PROCESO — CÓMO TRABAJAMOS
+    ============================================================ */
+    #proceso { background: var(--bg-deep); }
+
+    .proceso-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      margin-top: 3.5rem;
+    }
+
+    /* Línea conectora horizontal entre pasos */
+    .proceso-grid::before {
+      content: '';
+      position: absolute;
+      top: 28px; /* altura del número */
+      left: calc(12.5%);
+      right: calc(12.5%);
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--blue));
+      z-index: 0;
+    }
+
+    .paso {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .paso-numero {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      margin-bottom: 1.25rem;
+      position: relative;
+      transition: transform var(--transition);
+    }
+    .paso:hover .paso-numero { transform: scale(1.1); }
+
+    .paso:nth-child(1) .paso-numero { background: var(--orange); box-shadow: 0 0 0 4px rgba(232,80,10,0.15); }
+    .paso:nth-child(2) .paso-numero { background: color-mix(in srgb, var(--orange) 66%, var(--blue)); box-shadow: 0 0 0 4px rgba(200,75,60,0.12); }
+    .paso:nth-child(3) .paso-numero { background: color-mix(in srgb, var(--blue) 66%, var(--orange)); box-shadow: 0 0 0 4px rgba(60,100,160,0.12); }
+    .paso:nth-child(4) .paso-numero { background: var(--blue); box-shadow: 0 0 0 4px rgba(26,111,168,0.15); }
+
+    .paso-icono {
+      font-size: 1.5rem;
+    }
+
+    .paso-titulo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .paso-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .proceso-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem 1rem;
+      }
+      .proceso-grid::before { display: none; }
+    }
+    @media (max-width: 480px) {
+      .proceso-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ============================================================
        SECCIÓN REDES — PHONE MOCKUP + TIKTOK SLIDER
     ============================================================ */
     #redes { background: var(--bg); }
@@ -1236,6 +1323,7 @@
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#trabajos">Trabajos</a></li>
         <li><a href="#nosotros">Por qué nosotros</a></li>
+        <li><a href="#proceso">Proceso</a></li>
         <li><a href="#redes">Redes</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -1256,6 +1344,7 @@
       <a href="#servicios">Servicios</a>
       <a href="#trabajos">Trabajos</a>
       <a href="#nosotros">Por qué nosotros</a>
+      <a href="#proceso">Proceso</a>
       <a href="#redes">Redes</a>
       <a href="#contacto">Contacto</a>
       <a href="https://wa.me/5491149745772?text=Hola!%20Quiero%20consultar%20por%20un%20presupuesto." target="_blank" rel="noopener" style="color: var(--orange); border-bottom: none; margin-top: 0.5rem;">Pedir presupuesto →</a>
@@ -1451,6 +1540,59 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESO — CÓMO TRABAJAMOS
+============================================================ -->
+<section id="proceso" class="section">
+  <div class="container">
+
+    <div class="reveal" style="text-align: center; max-width: 600px; margin-inline: auto;">
+      <div class="section-label">Cómo trabajamos</div>
+      <h2 class="section-title">Simple, rápido<br/>y sin vueltas.</h2>
+      <p class="section-subtitle" style="margin-inline: auto;">
+        De la consulta al trabajo terminado en pocos pasos. Sin intermediarios, sin sorpresas.
+      </p>
+    </div>
+
+    <div class="proceso-grid">
+
+      <div class="paso reveal">
+        <div class="paso-numero">
+          <span class="paso-icono">💬</span>
+        </div>
+        <div class="paso-titulo">Nos contactás</div>
+        <p class="paso-desc">Mandás un WhatsApp o llamás. Nos contás qué necesitás y dónde está el trabajo.</p>
+      </div>
+
+      <div class="paso reveal">
+        <div class="paso-numero">
+          <span class="paso-icono">📋</span>
+        </div>
+        <div class="paso-titulo">Presupuesto gratis</div>
+        <p class="paso-desc">Evaluamos el proyecto y te enviamos el presupuesto detallado en menos de 24 hs. Sin cargo.</p>
+      </div>
+
+      <div class="paso reveal">
+        <div class="paso-numero">
+          <span class="paso-icono">🔧</span>
+        </div>
+        <div class="paso-titulo">Aplicamos</div>
+        <p class="paso-desc">Vamos a la obra con nuestro equipo y materiales de primera línea. Trabajamos limpio y en tiempo.</p>
+      </div>
+
+      <div class="paso reveal">
+        <div class="paso-numero">
+          <span class="paso-icono">✅</span>
+        </div>
+        <div class="paso-titulo">Trabajo terminado</div>
+        <p class="paso-desc">Entregamos el trabajo finalizado. Respaldamos cada aplicación con garantía de calidad.</p>
+      </div>
+
+    </div>
+
   </div>
 </section>
 
